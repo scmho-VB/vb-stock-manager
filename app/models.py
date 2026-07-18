@@ -1,1 +1,3 @@
-# Database models will be added here.
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()

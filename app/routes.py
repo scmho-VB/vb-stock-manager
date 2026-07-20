@@ -1,5 +1,7 @@
-from app import app
+from flask import Blueprint
 
-@app.route("/")
+main = Blueprint("main", __name__)
+
+@main.route("/")
 def home():
     return "VB Stock Manager is Running!"

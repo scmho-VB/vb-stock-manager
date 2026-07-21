@@ -3,7 +3,7 @@ from flask import Flask
 from .models import db
 
 def create_app():
-    app = Flask(__name__)
+    app = Flask(__name__, template_folder=os.path.join(os.path.dirname(__file__), 'templates'))
 
     db_url = os.environ.get('DATABASE_URL', 'sqlite:///local.db')
     if db_url.startswith("postgres://"):

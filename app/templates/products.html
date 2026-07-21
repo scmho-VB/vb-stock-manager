@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Products</h1>
+<p><a href="{{ url_for('main.add_product') }}" class="btn">+ Add New Product</a></p>
+
+<table>
+    <tr>
+        <th>Name</th><th>SKU</th><th>Category</th><th>Unit</th>
+        <th>Quantity</th><th>Reorder Level</th><th>Actions</th>
+    </tr>
+    {% for p in products %}
+    <tr>
+        <td>{{ p.name }}</td>
+        <td>{{ p.sku }}</td>
+        <td>{{ p.category or '-' }}</td>
+        <td>{{ p.unit }}</td>
+        <td class="{% if p.quantity <= p.reorder_level %}low-stock{% endif %}">{{ p.quantity }}</td>
+        <td>{{ p.reorder_level }}</td>
+        <td>
+            <a href="{{ url_for('main.edit_product', product_id=p.id) }}" class="btn">Edit</a>
+            <form method="POST" action="{{ url_for('main.delete_product', product_id=p.id) }}" style="display:inline;" onsubmit="return confirm('Delete this product?');">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </td>
+    </tr>
+    {% else %}
+    <tr><td colspan="7">No products yet. Add one above.</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}

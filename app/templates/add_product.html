@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Add Product</h1>
+<div class="card">
+<form method="POST">
+    <label>Product Name</label>
+    <input type="text" name="name" required>
+
+    <label>SKU / Barcode</label>
+    <input type="text" name="sku" required>
+
+    <label>Category</label>
+    <input type="text" name="category">
+
+    <label>Unit (e.g. pcs, box, kg)</label>
+    <input type="text" name="unit" value="pcs">
+
+    <label>Opening Quantity</label>
+    <input type="number" name="quantity" value="0">
+
+    <label>Reorder Level (low stock alert)</label>
+    <input type="number" name="reorder_level" value="10">
+
+    <br><br>
+    <button type="submit" class="btn">Save Product</button>
+</form>
+</div>
+{% endblock %}
